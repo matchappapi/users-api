@@ -3,8 +3,8 @@ import { validate, ValidationError } from 'class-validator';
 import { RequestHandler, Request, Response, NextFunction } from 'express';
 import HttpException from '../exceptions/HttpException';
  
-export default (type: any, skipMissingProperties = false): RequestHandler => {
-  return (req: Request, res: Response, next: NextFunction) => {
+export default (type: any, skipMissingProperties = false): RequestHandler => 
+  (req: Request, res: Response, next: NextFunction) => {
     validate(plainToClass(type, req.body), { skipMissingProperties })
       .then((errors: ValidationError[]) => {
         if (errors.length > 0) {
@@ -15,4 +15,3 @@ export default (type: any, skipMissingProperties = false): RequestHandler => {
         }
       });
   }
-}
