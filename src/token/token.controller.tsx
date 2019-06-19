@@ -7,14 +7,14 @@ class TokenController {
 
   public createToken(user: IUser): TokenData {
     const expiresIn = 60 * 60; // an hour
-    const secret:string = process.env.JWT_SECRET || 'Lucas';
+    const secret:string = process.env.JWT_SECRET || 'Spacenow';
     const dataStoredInToken: DataStoredInToken = {
       id: user.id,
     };
     return {
       expiresIn,
-      token: jwt.sign(dataStoredInToken, secret, { expiresIn }),
-    };
+      token: jwt.sign(dataStoredInToken, secret, { expiresIn })
+    }
   }
 
   public getToken(request: Request): string {
@@ -30,4 +30,4 @@ class TokenController {
 
 }
  
-export default TokenController;
+export default TokenController

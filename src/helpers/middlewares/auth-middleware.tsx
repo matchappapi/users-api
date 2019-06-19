@@ -4,8 +4,9 @@ import AuthenticationTokenMissingException from '../exceptions/AuthenticationTok
 import WrongAuthenticationTokenException from '../exceptions/WrongAuthenticationTokenException';
 import RequestWithUser from '../interfaces/requestWithUser.inteface';
 import { DataStoredInToken } from '../../token/token.interface';
-import TokenController from '../../token/token.controller'
-import usersMock from '../mocks/users.mock'
+import TokenController from '../../token/token.controller';
+import usersMock from '../mocks/users.mock';
+
 async function authMiddleware(request: RequestWithUser, response: Response, next: NextFunction) {
   const token = new TokenController().getToken(request);
   if (token) {
