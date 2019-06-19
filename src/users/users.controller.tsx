@@ -15,12 +15,18 @@ class UsersController {
  
   private intializeRoutes() {
     this.router.get(this.path, this.getAllUsers);
+    this.router.get(`${this.path}/:id`, this.getUser);
     this.router.post(this.path, validationMiddleware(userDTO), this.createUser);
     this.router.patch(this.path, validationMiddleware(userDTO, true), this.createUser);
   }
  
   private getAllUsers = (request: Request, response: Response) => {
     response.send(usersMock);
+  }
+
+  private getUser = (request: Request, response: Response) => {
+    const user = usersMock.find(user => user.id === request.params.id);
+    response.send(user);
   }
  
   private createUser = (request: Request, response: Response) => {

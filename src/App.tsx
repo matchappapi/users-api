@@ -8,10 +8,12 @@ class App {
 
     public app:Application;
     public port:number;
+    public host:string;
 
-    constructor(controllers: any, port: number) {
+    constructor(controllers: any, port: number, host: string) {
         this.app = express();
         this.port = port;
+        this.host = host;
         this.initializeMiddlewares();
         this.initializeControllers(controllers);
         this.initializeErrorHandling();
@@ -34,8 +36,8 @@ class App {
     }
 
     public listen() {
-        this.app.listen(this.port, () => {
-          console.log(`App listening on the port ${this.port}`);
+        this.app.listen(this.port, this.host, () => {
+          console.log(`App listening on the port ${this.host}:${this.port}`);
         });
     }
 
