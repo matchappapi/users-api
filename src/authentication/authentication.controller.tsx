@@ -22,7 +22,7 @@ class AuthenticationController {
   private intializeRoutes() {
     this.router.post(`${this.path}/register`, validationMiddleware(CreateUserDTO), this.register);
     this.router.post(`${this.path}/signin`, validationMiddleware(CreateLoginDTO), this.login);
-    this.router.post(`${this.path}/logout`, this.logout);
+    // this.router.post(`${this.path}/logout`, this.logout);
   }
  
   private register = async (req: Request, res: Response, next: NextFunction) => {
@@ -38,8 +38,8 @@ class AuthenticationController {
       });
       const user = userList[userList.length - 1];
       const tokenData = new TokenController().createToken(user)
-      res.setHeader('Set-Cookie', [new CookieController().createCookie(tokenData)]);
-      res.send(user);
+      // res.setHeader('Set-Cookie', [new CookieController().createCookie(tokenData)]);
+      res.send(tokenData);
     }
   }
  
@@ -50,18 +50,18 @@ class AuthenticationController {
       const isPasswordMatching = await bcrypt.compare(logInData.password, user.password);
       if (isPasswordMatching) {
         const tokenData = new TokenController().createToken(user);
-        res.setHeader('Set-Cookie', [new CookieController().createCookie(tokenData)]);
-        res.send(user);
+        // res.setHeader('Set-Cookie', [new CookieController().createCookie(tokenData)]);
+        res.send(tokenData);
       } else
         next(new WrongCredentialsException());
     } else 
       next(new WrongCredentialsException());
   }
 
-  private logout = (req: Request, res: Response) => {
-    res.setHeader('Set-Cookie', ['Authorization=;Max-age=0']);
-    res.sendStatus(200);
-  }
+  // private logout = (req: Request, res: Response) => {
+  //   res.setHeader('Set-Cookie', ['Authorization=;Max-age=0']);
+  //   res.sendStatus(200);
+  // }
 
 }
  

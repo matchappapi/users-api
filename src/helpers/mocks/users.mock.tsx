@@ -2,10 +2,10 @@ import IUser from '../../users/user.interface';
 
 let users:IUser[] = [
     {
-        id: '6c84fb90-12c4-11e1-840d-7b25c5ee775a',
+        id: '9af8ed30-6017-11e9-9e5e-05148d6daebf',
         name: 'Lucas',
-        email: 'lucas@gmail.com.au',
-        password: '$2b$10$dO2G.x5q6og/EHVeAl4dveHKwpCfnnVcu7hPP4D2Kb1dEDVxU2EtG'
+        email: 'lucas@spacenow.com',
+        password: '$2a$08$waFHpKpKG2Onv5HYb5i6/.vNiV/h31OHYhkmxARBjM4bjGFPa6rAC'
     },
     {
         id: '6c84fb90-12c4-11e1-11e1-7b25c5ee775a',

@@ -11,7 +11,7 @@ async function authMiddleware(req: RequestWithUser, res: Response, next: NextFun
     const secret:string = process.env.JWT_SECRET || 'Lucas';
     try {
       const verificationResponse:DataStoredInToken = jwt.verify(cookies.Authorization, secret) as DataStoredInToken;
-      const id = verificationResponse._id;
+      const id = verificationResponse.id;
       const user = usersMock.find(user => user.id === id);
       if (user) {
         req.user = user;
