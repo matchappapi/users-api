@@ -37,7 +37,7 @@ class App {
         });
     }
 
-    public async listen() {
+    public listen() {
         this.app.listen(this.port, this.host, () => {
           console.log(`App listening on the port ${this.host}:${this.port}`);
         });

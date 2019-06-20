@@ -32,6 +32,11 @@ class UsersController {
     const user = await User.findOne({ where: {id: request.params.id} });
     response.send(user);
   }
+
+  private getUser = (request: Request, response: Response) => {
+    const user = usersMock.find(user => user.id === request.params.id);
+    response.send(user);
+  }
  
   private createUser = (request: Request, response: Response) => {
     const user: IUser = request.body;
