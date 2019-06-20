@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import jwt from 'jsonwebtoken'
 import TokenData, { DataStoredInToken } from './token.interface';
 import IUser from './../users/user.interface'
@@ -12,10 +13,21 @@ class TokenController {
     };
     return {
       expiresIn,
-      token: jwt.sign(dataStoredInToken, secret, { expiresIn }),
-    };
+      token: jwt.sign(dataStoredInToken, secret, { expiresIn })
+    }
+  }
+
+  public getToken(request: Request): string {
+      if (request.headers.authorization && request.headers.authorization.split(' ')[0] === 'Bearer') {
+          return request.headers.authorization.split(' ')[1];
+      } else if (request.query && request.query.token) {
+        return request.query.token;
+      } else if (request.cookies && request.cookies.authorization) {
+        return request.cookies.authorization;
+      }
+      return '';
   }
 
 }
  
-export default TokenController;
+export default TokenController
